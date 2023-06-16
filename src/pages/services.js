@@ -7,7 +7,7 @@ export default function Service() {
     <Layout>
       <div>
         <HeroPage
-          title="Nos Ser"
+          title="Ser"
           otherTitle="vices"
           content="Des services sur mesure pour des bornes d'arcade uniques"
         />

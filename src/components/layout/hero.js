@@ -25,7 +25,7 @@ const Hero = () => {
       strings: ["Arcade", "Arcade"],
       typeSpeed: 40,
       backSpeed: 50,
-      backDelay: 3000,
+      backDelay: 8000,
       loop: true,
     });
 
@@ -45,12 +45,12 @@ const Hero = () => {
 
   return (
     <div
-      className="relative bg-no-repeat bg-center bg-cover h-[450px] md:h-[600px] lg:h-[680px]"
+      className="relative bg-no-repeat bg-cover h-[450px] md:h-[600px] lg:h-[680px] xl:h-[800px]"
       style={{ backgroundImage: `url('${slides[currentSlide]}')` }}
     >
       <div className="bg-overlay"></div>
       <div className="container">
-        <div className="flex items-center mr-0 ml-0 h-[550px] md:h-[600px] xl:h-[600px]">
+        <div className="flex items-center mr-0 ml-0 h-[550px] md:h-[600px] xl:h-[800px]">
           <div className="relative text-center z-10 pr-0 pl-0 mx-auto sm:w-1/2 md:w-2/3 xl:mx-auto">
             <h1 className="ftn-size uppercase text-white font-[600] text-center">
               Neo<span className="text-[#EBA24E] multiple-text"></span>

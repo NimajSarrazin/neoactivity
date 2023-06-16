@@ -1,8 +1,6 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { BsMouse } from "react-icons/bs";
-import { IoRadioButtonOnOutline } from "react-icons/io5";
-import { SiApplearcade } from "react-icons/si";
 import Typed from "typed.js"; // Ajout de l'import pour Typed.js
 
 const HeroPage = ({title, otherTitle, content}) => {

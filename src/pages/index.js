@@ -13,6 +13,7 @@ export default function Home({ arcadePosts }) {
   );
 }
 
+
 export async function getStaticProps() {
   // Je récupe mes logs et ma data
     const arcadeClient = createClient({
