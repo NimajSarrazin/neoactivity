@@ -2,26 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --fnt-size: 7vw;
+  --ftn-size-p: 10vw;
+  --bg-size: 800px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.ftn-size-p {
+  font-size: var(--fnt-size-p);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.ftn-size {
+  font-size: var(--fnt-size);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+}
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.6;
+  background: linear-gradient(45deg, #333 50%, #a2a2a258 50%);
+}
+
+#bg-overlay-section {
+  opacity: 0.6;
+  background: linear-gradient(45deg, #000 0%, #000 100%);
+}
+
+.overlayScrolling {
+  background: linear-gradient(45deg, #f200ff 0%, #ffba42 100%);
+}
+
+.hero-bg {
+  position: relative;
+}
+
+.bg-size {
+  height: var(--bg-size);
+}
+
+/* section contact */
+.label {
+  display: inline-block;
+  width: 120px;
+  text-align: left;
+  margin-right: 16px;
+}
+
+.bg-transparent {
+  background-color: transparent !important;
 }
