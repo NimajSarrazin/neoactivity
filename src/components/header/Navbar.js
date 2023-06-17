@@ -1,120 +1,69 @@
+import { useState } from "react";
 import { dataNavLinks } from "@/data/dataNavLinks";
+import { Button, Toast } from "@nextui-org/react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
-  const [showModal, setShowModal] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const { data: session } = useSession();
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
-  const handleClick = () => {
-    setShowModal(true);
+  const handleSignOut = () => {
+    signOut();
+    setShowSuccessPopup(false);
   };
 
-  const handleLinkClick = () => {
-    setShowModal(false);
+  const handleSignInSuccess = () => {
+    setShowSuccessPopup(true);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageY;
-      if (scrollTop > 0) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const closeSuccessPopup = () => {
+    setShowSuccessPopup(false);
+  };
 
   return (
-    <div
-      className={`${
-        scrolled ? "" : ""
-      }bg-black text-white list-none absolute top-0 left-0 right-0 z-20 md:bg-transparent`}
-    >
-      <div className="container flex justify-between ">
+    <div className="bg-black text-white">
+      <div className="container flex justify-between items-center py-4">
         <Link href="/">
-          <div className="flex items-center justify-between h-16">
-            <li className="font-black text-2xl">
-              Neo<span className="text-[#EBA24E]">Arcade</span>
-            </li>
-            <div className="-mr-2 flex md:hidden">
-              <button
-                onClick={handleClick}
-                type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
-                aria-label="Main menu"
-                aria-expanded="false"
-              >
-                <svg
-                  className="block h-6 w-6"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-                <svg
-                  className="hidden h-6 w-6"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-                MENU
-              </button>
-            </div>
-          </div>
+          <p className="font-black text-2xl">
+            Neo<span className="text-[#EBA24E]">Arcade</span>
+          </p>
         </Link>
-        <ul className="flex items-center justify-between">
-          <div className="hidden md:block">
-            <div className="ml-10 flex gap-5 uppercase">
-              {dataNavLinks.map(({ link, id, title }) => (
-                <Link href={link} key={id}>
-                  <li
-                    className="hover:text-[#ffb82a] hover:underline text-sm font-medium"
-                    onClick={handleLinkClick}
-                  >
-                    {title}
-                  </li>
-                </Link>
-              ))}
-            </div>
-          </div>
+        <ul className="flex items-center space-x-5">
+          {dataNavLinks.map(({ link, title, id }) => (
+            <li key={id}>
+              <Link href={link}>
+                <p className="hover:text-[#ffb82a] hover:underline text-sm font-medium">
+                  {title}
+                </p>
+              </Link>
+            </li>
+          ))}
+          {session ? (
+            <Button auto ghost onClick={handleSignOut}>
+              Sign Out
+            </Button>
+          ) : (
+            <Link href="/api/auth/signin">
+              <Button auto ghost onClick={handleSignInSuccess}>
+                Sign In
+              </Button>
+            </Link>
+          )}
+          <img className="w-10 rounded-full" src={session.user.image} alt={session.user.image} />
         </ul>
       </div>
-      <div
-        className={`${
-          showModal ? "block" : "hidden"
-        } md:hidden bg-black px-2 pt-2 pb-3`}
-      >
-        {dataNavLinks.map(({ link, title, id }) => (
-          <Link href={link} key={id}>
-            <li
-              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-700"
-              onClick={handleLinkClick}
-            >
-              {title}
-            </li>
-          </Link>
-        ))}
-      </div>
+      {showSuccessPopup && (
+        <Toast
+          duration={5000}
+          onClose={closeSuccessPopup}
+          autoHide
+          filled
+          status="success"
+          text="Connection réussie avec succès!"
+          className="fixed bottom-4 right-4"
+        />
+      )}
     </div>
   );
 }
