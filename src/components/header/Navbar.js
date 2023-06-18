@@ -3,11 +3,13 @@ import { Button } from "@nextui-org/react";
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import BurgerMenu from "./btnNavResponsive/BurgerMenu";
 
 export default function Navbar() {
   const { data: session } = useSession();
   const [showModal, setShowModal] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
   const handleSignOut = () => {
     signOut();
@@ -21,14 +23,14 @@ export default function Navbar() {
     setShowModal(false);
   };
 
+  const handleMenuToggle = () => {
+    setShowMenu(!showMenu);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.pageY;
-      if (scrollTop > 0) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(scrollTop > 0);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -40,9 +42,9 @@ export default function Navbar() {
 
   return (
     <div
-      className={`${
-        scrolled ? "" : ""
-      }bg-black text-white list-none absolute top-0 left-0 right-0 z-20 md:bg-transparent`}
+      className={`bg-black text-white list-none absolute top-0 left-0 right-0 z-20 ${
+        scrolled ? "" : "md:bg-transparent"
+      }`}
     >
       <div className="container flex justify-between ">
         <Link href="/">
@@ -51,41 +53,7 @@ export default function Navbar() {
               Neo<span className="text-[#EBA24E]">Arcade</span>
             </li>
             <div className="-mr-2 flex md:hidden">
-              <button
-                onClick={handleClick}
-                type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out"
-                aria-label="Main menu"
-                aria-expanded="false"
-              >
-                <svg
-                  className="block h-6 w-6"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-                <svg
-                  className="hidden h-6 w-6"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-                MENU
-              </button>
+              <BurgerMenu />
             </div>
           </div>
         </Link>
@@ -108,11 +76,38 @@ export default function Navbar() {
                 </Button>
               ) : (
                 <Link href="/login">
-                  <Button auto ghost >
+                  <Button auto ghost>
                     Se connecter
                   </Button>
                 </Link>
               )}
+              <div className="relative">
+                <img
+                  src={session?.user.image}
+                  alt={session?.user.image}
+                  onClick={handleMenuToggle}
+                  className="cursor-pointer rounded-full w-16"
+                />
+                {showMenu && (
+                  <ul className="absolute right-0 mt-2 bg-white text-black py-2 rounded shadow">
+                    <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                      <Link href="/settings">Paramètres</Link>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                      <Link href="/profile">Profil</Link>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-gray-200 cursor-pointer">
+                      <Link href="/dashboard">Tableau de bord</Link>
+                    </li>
+                    <li
+                      className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                      onClick={handleSignOut}
+                    >
+                      Déconnexion
+                    </li>
+                  </ul>
+                )}
+              </div>
             </div>
           </div>
         </ul>

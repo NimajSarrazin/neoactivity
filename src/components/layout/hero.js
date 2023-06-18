@@ -23,7 +23,7 @@ const Hero = () => {
       strings: ["Arcade", "Arcade"],
       typeSpeed: 40,
       backSpeed: 50,
-      backDelay: 8000,
+      backDelay: 3000,
       loop: true,
     });
 
@@ -36,7 +36,7 @@ const Hero = () => {
     // Changez la diapositive toutes les quelques secondes (par exemple, toutes les 7 secondes)
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 3000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [slides]);

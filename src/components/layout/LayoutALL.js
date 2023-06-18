@@ -1,8 +1,8 @@
 export default function LayoutALL({ children }) {
   return (
-    <div className="flex h-screen" id="layout-overlay">
+    <div className="flex h-screen overflow-hidden" id="layout-overlay">
       <div
-        className="m-auto bg-[#3838389b] rounded-md w-3/5 h-3/4 grid lg:grid-cols-2"
+        className="m-auto bg-[#3838389b] rounded-md w-3/5 h-auto grid lg:grid-cols-2"
       >
         <div className="flex items-center mx-auto">
           <div className="text-center text-5xl lg:text-7xl text-yellow-200">

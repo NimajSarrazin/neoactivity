@@ -19,7 +19,7 @@ export default function Login() {
   if (session) {
     return (
       <div className="bg-slate-50 h-screen w-screen">
-        <p className="bg-green-200 text-center py-10 text-xl">
+        <p className="bg-green-200 text-center py-10 text-xl ">
           Félicitation vous venez de vous connecté
         </p>
         <div className="items-center text-center">
@@ -41,6 +41,11 @@ export default function Login() {
             <Link href={"/"}>
               <button className="bg-slate-300 p-4 border shadow-lg">
                 Déconnecté
+              </button>
+            </Link>
+            <Link href={"/"}>
+              <button className="bg-slate-300 p-4 border shadow-lg">
+                Aller sur le site
               </button>
             </Link>
           </div>
