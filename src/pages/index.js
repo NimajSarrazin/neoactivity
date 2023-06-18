@@ -3,11 +3,7 @@ import Layout from "@/components/layout/Layout";
 import Hero from "@/components/layout/hero";
 import { createClient } from "contentful";
 
-
-
 export default function Home({ arcadePosts }) {
-  
-
   return (
     <Layout>
       <Hero />

@@ -1,6 +1,5 @@
 import { HiFingerPrint, HiAtSymbol, HiUser } from "react-icons/hi";
 import { useState } from "react";
-import Link from "next/link";
 import { signIn } from "next-auth/react";
 import {
   inputStyle,
@@ -9,17 +8,27 @@ import {
   buttonHover,
   buttonCustom,
 } from "@/components/form/formStyle/dataStyleForm";
+
 export default function AsideForm() {
-    const [show, setShow] = useState({ password: false, seepassword: false });
+  const [show, setShow] = useState({ password: false, seepassword: false });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("")
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  }
   return (
     <aside>
-      <form className="flex flex-col gap-5">
+      <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
         <div className={`${inputGroup}`}>
           <input
             className={`${inputStyle}`}
             type="text"
             name="Username"
             placeholder="Nom"
+          
           />
           <span className="icon flex items-center px-4">
             <HiUser size={25} />
@@ -31,6 +40,7 @@ export default function AsideForm() {
             type="email"
             name="email"
             placeholder="Email"
+         
           />
           <span className="icon flex items-center px-4">
             <HiAtSymbol size={25} />
@@ -42,6 +52,7 @@ export default function AsideForm() {
             type={`${show.password ? "text" : "password"}`}
             name="password"
             placeholder="Mot de passe"
+         
           />
           <span className="icon flex items-center px-4 cursor-pointer">
             <HiFingerPrint
@@ -56,6 +67,7 @@ export default function AsideForm() {
             type={`${show.seepassword ? "text" : "password"}`}
             name="seepassword"
             placeholder="Comfirmer votre Mot de passe"
+          
           />
           <span className="icon flex items-center px-4 cursor-pointer">
             <HiFingerPrint
@@ -69,7 +81,7 @@ export default function AsideForm() {
         {/* button login */}
         <div className="input-button">
           <button className={`${buttonStyle} ${buttonHover}`} type="submit">
-            Se connecter
+            S'inscrire
           </button>
         </div>
         <div className="input-button">
