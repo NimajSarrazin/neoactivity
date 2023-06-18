@@ -22,20 +22,20 @@ export default function Navbar() {
   };
 
   return (
-    <div className="bg-black text-white">
+    <div className={`${session ? "" : "bg-transparent"} bg-black text-white`}>
       <div className="container flex justify-between items-center py-4">
         <Link href="/">
-          <p className="font-black text-2xl">
+          <a className="font-black text-2xl">
             Neo<span className="text-[#EBA24E]">Arcade</span>
-          </p>
+          </a>
         </Link>
         <ul className="flex items-center space-x-5">
           {dataNavLinks.map(({ link, title, id }) => (
             <li key={id}>
               <Link href={link}>
-                <p className="hover:text-[#ffb82a] hover:underline text-sm font-medium">
+                <a className="hover:text-[#ffb82a] hover:underline text-sm font-medium">
                   {title}
-                </p>
+                </a>
               </Link>
             </li>
           ))}
@@ -45,12 +45,14 @@ export default function Navbar() {
             </Button>
           ) : (
             <Link href="/api/auth/signin">
-              <Button auto ghost onClick={handleSignInSuccess}>
+              <a
+                className="next-btn next-btn-ghost"
+                onClick={handleSignInSuccess}
+              >
                 Sign In
-              </Button>
+              </a>
             </Link>
           )}
-          <img className="w-10 rounded-full" src={session.user.image} alt={session.user.image} />
         </ul>
       </div>
       {showSuccessPopup && (
@@ -60,7 +62,7 @@ export default function Navbar() {
           autoHide
           filled
           status="success"
-          text="Connection réussie avec succès!"
+          text="Connexion réussie avec succès!"
           className="fixed bottom-4 right-4"
         />
       )}

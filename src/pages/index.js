@@ -4,20 +4,15 @@ import Hero from "@/components/layout/hero";
 import SessionEmpty from "@/components/sessionConnection/sessionEmpty";
 import { createClient } from "contentful";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+
 
 export default function Home({ arcadePosts }) {
   const { data: session } = useSession();
-  const router = useRouter();
-
-  const redirectToHomePage = () => {
-    router.push("/");
-  };
 
   if (!session) {
     return (
       <div>
-        <SessionEmpty onNotConnect={redirectToHomePage} />
+        <SessionEmpty/>
       </div>
     );
   }
