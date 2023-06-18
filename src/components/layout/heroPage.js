@@ -42,7 +42,7 @@ const HeroPage = ({title, otherTitle, content}) => {
             <p className="text-white text-[22px] uppercase">
               {content}
             </p>
-            <Link href="#sectionCard">
+            <Link href="#sectionCard" legacyBehavior>
               <div className="flex justify-center items-center">
                 <BsMouse className="text-white text-4xl hover:text-[#EBA24E] absolute -bottom-28 cursor-pointer animate-bounce md:-bottom-52 xl:left-1/2 xl:text-5xl" />
               </div>

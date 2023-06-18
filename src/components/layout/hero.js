@@ -1,8 +1,6 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { BsMouse } from "react-icons/bs";
-import { IoRadioButtonOnOutline } from "react-icons/io5";
-import { SiApplearcade } from "react-icons/si";
 import Typed from "typed.js"; // Ajout de l'import pour Typed.js
 
 const Hero = () => {
@@ -45,7 +43,7 @@ const Hero = () => {
 
   return (
     <div
-      className="relative bg-no-repeat bg-cover h-[450px] md:h-[600px] lg:h-[680px] xl:h-[800px]"
+      className="relative bg-no-repeat bg-cover bg-center h-[450px] md:h-[600px] lg:h-[680px] xl:h-[800px]"
       style={{ backgroundImage: `url('${slides[currentSlide]}')` }}
     >
       <div className="bg-overlay"></div>
@@ -58,7 +56,7 @@ const Hero = () => {
             <p className="text-white text-[22px] uppercase">
               Plongez dans la nostalgie, jouez à l'arcade chez vous
             </p>
-            <Link href="#sectionCard">
+            <Link href="#sectionCard" legacyBehavior>
               <div className="flex justify-center items-center">
                 <BsMouse className="text-white text-4xl hover:text-[#EBA24E] absolute -bottom-28 cursor-pointer animate-bounce md:-bottom-52 xl:left-1/2 xl:text-5xl" />
               </div>

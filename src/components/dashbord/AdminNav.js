@@ -22,22 +22,22 @@ export default function AdminNav() {
                   MENU
                 </h3>
                 <li className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 bg-graydark dark:bg-meta-4 active">
-                  <Link href={"/"}>
+                  <Link href={"/"} legacyBehavior>
                     <span> Tableau de bord</span>
                   </Link>
                 </li>
                 <li className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 bg-graydark dark:bg-meta-4 active">
-                  <Link href={"/"}>
+                  <Link href={"/"} legacyBehavior>
                     <span> Boutique</span>
                   </Link>
                 </li>
                 <li className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 bg-graydark dark:bg-meta-4 active">
-                  <Link href={"/"}>
+                  <Link href={"/"} legacyBehavior>
                     <span> Profil</span>
                   </Link>
                 </li>
                 <li className="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 bg-graydark dark:bg-meta-4 active">
-                  <Link href={"/"}>
+                  <Link href={"/"} legacyBehavior>
                     <span> Paramètre</span>
                   </Link>
                 </li>

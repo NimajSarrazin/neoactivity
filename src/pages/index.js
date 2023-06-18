@@ -1,29 +1,19 @@
 import SectionPresentation from "@/components/SectionPresentation";
 import Layout from "@/components/layout/Layout";
 import Hero from "@/components/layout/hero";
-import SessionEmpty from "@/components/sessionConnection/sessionEmpty";
 import { createClient } from "contentful";
-import { useSession } from "next-auth/react";
+
 
 
 export default function Home({ arcadePosts }) {
-  const { data: session } = useSession();
+  
 
-  if (!session) {
-    return (
-      <div>
-        <SessionEmpty/>
-      </div>
-    );
-  }
-  if (session) {
-    return (
-      <Layout>
-        <Hero />
-        <SectionPresentation />
-      </Layout>
-    );
-  }
+  return (
+    <Layout>
+      <Hero />
+      <SectionPresentation />
+    </Layout>
+  );
 }
 
 export async function getStaticProps() {

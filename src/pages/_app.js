@@ -9,7 +9,7 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <Head>
-        <title>My App</title>
+        <title>Neo arcade</title>
       </Head>
       <main>
         <Component {...pageProps} />
