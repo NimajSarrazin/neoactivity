@@ -18,35 +18,29 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
     CredentialsProvider({
-      // Les options de configuration pour les informations d'identification
+      // Configuration du fournisseur de connexion par e-mail
       credentials: {
-        // Configuration des champs d'entrée personnalisés
         email: {
           label: "Email",
-          type: "email",
+          type: "text",
+          placeholder: "email@example.com",
         },
-        password: {
-          label: "Mot de passe",
-          type: "password",
-        },
+        password: { label: "Mot de passe", type: "password" },
       },
-      async authorize(credentials, _req) {
-        // Vérifiez les informations d'identification ici et renvoyez l'utilisateur
-        // Si les informations d'identification sont valides, renvoyez l'utilisateur
-        // Sinon, renvoyez null ou une erreur appropriée
-        // Exemple de vérification d'un utilisateur dans une base de données MongoDB
-        const client = await clientPromise;
-        const db = client.db();
+      authorize: async (credentials) => {
+        // Vérification de l'e-mail avant la connexion
+        const { email, password } = credentials;
 
-        const user = await db.collection("users").findOne({
-          email: credentials.email,
-        });
+        // Votre logique de vérification de l'e-mail ici
+        // Vous pouvez utiliser MongoDBAdapter pour interroger votre base de données MongoDB
 
-        if (user && user.password === credentials.password) {
-          return user;
-        }
+        // Si l'e-mail est vérifié avec succès, vous pouvez renvoyer un objet utilisateur
+        const user = { email: "user@example.com", name: "John Doe" };
+        return Promise.resolve(user);
 
-        return null;
+        // Si l'e-mail n'est pas vérifié, vous pouvez renvoyer null ou une erreur
+        // return Promise.resolve(null);
+        // return Promise.reject(new Error("Erreur de vérification de l'e-mail"));
       },
     }),
   ],

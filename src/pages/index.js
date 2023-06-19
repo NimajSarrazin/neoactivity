@@ -1,13 +1,16 @@
 import SectionPresentation from "@/components/SectionPresentation";
+import Banner from "@/components/cards/banner";
 import Layout from "@/components/layout/Layout";
 import Hero from "@/components/layout/hero";
 import { createClient } from "contentful";
 
-export default function Home({ arcadePosts }) {
+export default function Home({ arcadePosts}) {
+  console.log(arcadePosts);
   return (
     <Layout>
       <Hero />
-      <SectionPresentation />
+      <SectionPresentation arcadePosts={arcadePosts} />
+      <Banner/>
     </Layout>
   );
 }

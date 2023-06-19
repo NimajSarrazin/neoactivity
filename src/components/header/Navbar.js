@@ -86,7 +86,7 @@ export default function Navbar() {
                   src={session?.user.image}
                   alt={session?.user.image}
                   onClick={handleMenuToggle}
-                  className="cursor-pointer rounded-full w-16"
+                  className="cursor-pointer rounded-full w-10"
                 />
                 {showMenu && (
                   <ul className="absolute right-0 mt-2 bg-white text-black py-2 rounded shadow">

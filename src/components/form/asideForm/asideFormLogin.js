@@ -65,7 +65,7 @@ export default function AsideFormLogin() {
         <div className="input-button">
           <button
             className={`${buttonCustom}`}
-            onClick={() => signIn("google")}
+            onClick={() => signIn("google", {emailVerified:true})}
           >
             Se connecter avec Google
             <svg
@@ -108,7 +108,7 @@ export default function AsideFormLogin() {
         <div className="input-button">
           <button
             className={`${buttonCustom}`}
-            onClick={() => signIn("github")}
+            onClick={() => signIn("github",{emailVerified:true})}
           >
             Se connecter avec Github
             <svg
